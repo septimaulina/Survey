@@ -1,0 +1,22 @@
+<h6>
+  <%= @question_group.name %>
+  <%= link_to "New Question", new_question_group_question_path(@question_group), class: 'btn btn-primary btn-sm' %>
+</h6>
+<hr/>
+
+<table>
+  <colgroup>
+    <col>
+    <col width="250">
+  </colgroup>
+  <thead>
+    <tr>
+      <th width="70">Question</th>
+      <th width="10%">Favorable</th>
+      <th width="20%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "question", collection: @questions %>
+  </tbody>
+</table>

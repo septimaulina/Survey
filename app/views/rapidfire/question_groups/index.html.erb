@@ -1,0 +1,34 @@
+<% if current_user.nil? == true %>
+<%= render '/home/welcome' %>
+<% else %>
+  <br/>
+<%if can_administer? %>
+  <%= render '/dashboard/panel_admin' %>
+  <% else %>
+  <%= render '/dashboard/panel_user' %>
+<% end %>
+<div class="panel">
+  <div class="panel-body">
+    <h6>Question Group
+        <% if can_administer? %>
+          <%= link_to "New Survey", new_question_group_path, class: 'btn btn-primary btn-sm' %>
+        <% end %>
+    </h6>    
+    <table>
+      <colgroup>
+        <col>
+        <col width="250">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th width='30%'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "question_group", collection: @question_groups %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

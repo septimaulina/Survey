@@ -1,0 +1,25 @@
+<h4>Result</h4>
+
+<!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Participant</a></li>
+    <li role="presentation"><a href="#norma" aria-controls="norma" role="tab" data-toggle="tab">Norma Kategorisasi</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <div class="panel">
+        <div class="panel-body">
+          <%= render 'participants' %>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="norma">
+      <div class="panel panel-stat stat-primary">
+        <div class="panel-body">
+          <%= render 'norma' %>
+        </div>
+      </div>
+    </div>
+  </div>

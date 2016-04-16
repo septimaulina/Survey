@@ -1,0 +1,20 @@
+<% if check_answer(params[:question_group_id], current_user.id) %>
+	<h6>Please answer all Questions</h6>
+	<p></p>
+	<hr/>
+
+	<%= form_for([@question_group, @answer_group_builder]) do |f| %>
+	  <%- @answer_group_builder.answers.each do |answer| %>
+	    <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+	      <%= render_answer_form_helper(answer, answer_form) %>
+	    <% end %>
+	  <% end %>
+	  <br/>
+	  <%= f.submit "Save",class: 'btn btn-info btn-sm' %>
+	<% end %>
+<% else %>
+	<script>
+	window.location = "/";
+	</script>
+	You already for this questions
+<% end %>

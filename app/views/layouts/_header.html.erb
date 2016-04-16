@@ -1,0 +1,46 @@
+<!-- header -->
+<div class="navbar navbar-inverse navbar-fixed-top index">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Survey</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="small" href="/about"> About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <% if current_user.nil? %>
+                
+                <li><%= link_to "Login", main_app.new_user_session_path %></li>
+                <% else %> 
+                <% if current_user.admin? %>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-cog"></i> Manage <span class="caret"></span></a>
+                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                        <li><a href="/question_groups">Survey List</a></li>
+                        <li><a href="/results">Result</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/participants">Participants</a>
+                        <li><a href="/user_groups">Class</a>
+                        </li>
+                    </ul>
+                </li>
+                <% end %>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> <%= current_user.name %> <span class="caret"></span></a>
+                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                        <li><%= link_to "Logout", main_app.destroy_user_session_path, method: :delete %></li>
+                    </ul>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Header -->

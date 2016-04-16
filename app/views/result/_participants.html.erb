@@ -1,0 +1,44 @@
+<strong>Result for all aspect</strong>
+<% q=0 %>
+
+<table>
+  <thead>
+    <tr align="center" >
+      <th>Name</th>
+      <% @question_groups.each do |group| q +=1 %>
+        <td><strong><a href="#" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<%= group.name %>">Q<%= q %></a></strong></td>
+      <% end %>
+      <th>Category</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @participants.each do |participant| 
+       @cat = get_category_by_score(score_category(participant.id))
+          case 
+          when @cat.downcase == 'tinggi'
+            style = 'success'
+          when @cat.downcase == 'sedang'
+            style = 'info'
+          when @cat.downcase == 'rendah'
+            style = 'warning'
+          end
+       %>
+      <tr>
+        <td><%= participant.name %></td>
+        <% @question_groups.each do |group| 
+           @score = score_aspect(group.id, participant.id)
+           if @score < group.questions.size
+              style_score = 'danger'
+           end
+              
+        %>
+        <td class="<%= style_score %>" align="center" ><%= score_aspect(group.id, participant.id) %></td>
+        <% end %>
+        <td class="<%= style %>"><a href="#" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Score: <%= score_category(participant.id) %> Rendah"><%= get_category_by_score(score_category(participant.id)) %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<strong>Note :</strong>
+<p>If uncategorize, mybe participant not complate ansewering question</p>

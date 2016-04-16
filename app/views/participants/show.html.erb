@@ -1,0 +1,11 @@
+<p>
+  <strong>Name:</strong>
+  <%= @participant.name %>
+</p>
+
+<p>
+  <strong>Nisn:</strong>
+  <%= @participant.nisn %>
+</p>
+<%= link_to 'Back', participants_path,class: 'btn btn-primary' %>
+<%= link_to 'Edit', edit_participant_path(@participant),class: 'btn btn-primary' %>

@@ -1,0 +1,26 @@
+<h4>Participant answer</h4>
+<p><strong>Question :</strong> <%= @question_group.name %></p>
+<p><strong>Name :</strong> <%= @answer_group.user.name %></p>
+<p><strong>Total Score: <%= score_aspect(@question_group.id, @answer_group.user.id) %></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Favorable</th>
+      <th>Answer</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answers.each do |answer| %>
+      <tr>
+        <td><%= answer.question.question_text %></a></td>
+        <td><%= answer.question.positive %></td>
+        <td><%= answer.answer_text %></td>
+        <td><%= score(answer.question.positive,answer.answer_text) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

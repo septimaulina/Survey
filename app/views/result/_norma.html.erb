@@ -1,0 +1,83 @@
+<br/>
+<%	@max = (total_questions).to_f * 4
+	@min = (total_questions).to_f * 1
+	@mean =  (total_questions).to_f * 3
+	@deviasi = 1/6.to_f*(@max.to_f-@min.to_f) %>
+<strong>Kategorisasi ... </strong>
+<p>Inventori kesiapan kerja pada siswa SMK jurusan animasi ini memiliki <u><i><%= total_questions %></i></u> item yang masing-masing diberi skor berkisar mulai dari 1, 2, 3, sampai 4 sehingga skor terkecil yang mungkin diperoleh oleh subjek pada inventori ini adalah <u><i><%= @min %></i></u> (yaitu 1 x <u><i><%= total_questions %></i></u>) dan skor tertinggi yang mungkin diperoleh adalah <u><i><%= @max %></i></u> ( 4 x <u><i><%= total_questions %></i></u> ).</p>
+
+
+<strong>4 Answer option :</strong>
+ <ul>
+ 	<li>Sangat Setuju</li>
+ 	<li>Setuju</li>
+ 	<li>Tidak Setuju</li>
+ 	<li>Sangat Tidak Setuju</li>
+ </ul>
+ <strong>3 Category :</strong>
+ <ul>
+ 	<li>Rendah</li>
+ 	<li>Sedang</li>
+ 	<li>Tinggi</li>
+ </ul>
+<table>
+	<head>
+		<tr class="info">
+		<th>Total Question</th>
+		<th>Score terendah (min)</th>
+		<th>Score tertinggi (max)</th>
+		<th>Standar deviasi (σ)</th>
+		<th>Mean teoritis (μ)</th>
+		</tr>
+	</head>
+	<tbody>
+		<tr>
+			<td rowspan="2">∑ = <%= total_questions %></td>
+			<td>1 x <%= total_questions %> (∑)</td>
+			<td>4 x <%= total_questions %> (∑)</td>
+			<td>1/6 (max - min)</td>
+			<td>total question (∑) x total category</td>
+		</tr>
+		<tr>
+			<td><%= @min %></td>
+			<td><%= @max %></td>
+			<td><%= @deviasi %></td>
+			<td><%= @mean %></td>
+		</tr>
+	</tbody>
+</table>
+<p>Rentang scorenya adalah (max - total question) = <u><%= @max.to_f - total_questions %></u></p>
+<p>Setiap satuan deviasi standarnya bernilai <i><%= @max %></i> / 6 = <u><i><%= @deviasi %></i></u>, dan mean teoritisnya adalah <i><%= total_questions %></i> x 3 = <u><i><%= @mean %></i></u>.</p>
+<table>
+<thead>
+  <tr class="info">
+    <th colspan="2">Norma</th>
+    <th colspan="2">Category</th>
+  </tr>
+</thead>
+<% 
+	@rendah = @mean - 1.0 * @deviasi 
+	@sedang = @mean + 1.0 * @deviasi 
+	@tinggi = @sedang
+%>
+<tbody>
+    <tr>
+		<td>x < ( μ - (1,0 σ ))</td>
+		<td>x < <%= @rendah %></td>
+		<td><%= @min %> - <%= @rendah - 1 %></td>
+		<td>Rendah</td>
+    </tr>
+    <tr>
+    	<td>( μ - (1,0 σ)) ≤ x < ( μ + ( 1,0 * σ ) )</td>
+    	<td><%= @rendah %> ≤ x < <%= @sedang %></td>
+    	<td><%= @rendah %> - <%= @sedang - 1 %></td>
+      	<td>Sedang</td>
+    </tr>
+    <tr>
+    	<td>( μ + ( 1,0 * σ ) ) ≤ x</td>
+    	<td><%= @tinggi %> ≤ x</td>
+    	<td><%= @tinggi %> - <%= @max %></td>
+      	<td>Tinggi</td>
+    </tr>
+</tbody>
+</table>

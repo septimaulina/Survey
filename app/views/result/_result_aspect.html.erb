@@ -1,0 +1,23 @@
+<br/>
+<strong>Result by participants</strong>
+<p>Show result by perticipant</p>
+
+<table>
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Class</th>
+    <th>Score</th>
+  </tr>
+</thead>
+
+<tbody>
+  <% @results.each do |result| %>
+    <tr>
+      <td><a href='/question_groups/<%= @question_group.id %>/participants/<%= result.user_id %> '><%= result.user.try(:name) %></a></td>
+      <td><%= result.user.user_group.try(:name) %></td>
+      <td><%= score_aspect(@question_group.id, result.user.id) %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

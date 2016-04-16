@@ -1,0 +1,43 @@
+<h6>Question</h6>
+
+<%= simple_form_for form, as: :question, url: url, method: method do |f| %>
+  <%- unless form.errors.empty? %>
+    <ul>
+      <%- form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<div class="col-md-8">
+<div class="login-form">
+      <div class="form-group hidden">
+          <div class="col-md-3"><%= f.label :type %></div>
+          <% f.select :type, ::Rapidfire::QuestionForm::QUESTION_TYPES, {}, id: "question_type" %>
+          <select id="question_type" name="question[type]">
+            <option selected="selected" value="Rapidfire::Questions::Radio">Radio</option>
+          </select>
+      </div>
+      <div class="form-input">
+        <%= f.input :positive, as: :select, label: 'Type' do 
+          f.select :positive, [['Favorable', true], ['Unfavorable', false]]
+          end %>
+      </div>
+
+      <div class="form-input">
+          <%= f.input :question_text, required: true, autofocus: true%>
+      </div>
+      <div class="form-group hidden">
+          <div class="col-md-3"><%= f.label :answer_options %></div>
+          <%= f.text_area :answer_options, rows: 5, 
+          value: 'Sangat Sesuai
+          Sesuai
+          Tidak Sesuai
+          Sangat Tidak Sesuai' %>
+      </div>
+      <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+</div>
+</div>
+
+<% end %>

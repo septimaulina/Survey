@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="<%= asset_path('favicon.ico') %>" type="image/x-icon">
+  <link rel="icon" href="<%= asset_path('favicon.png') %>" type="image/x-icon">
+</head>
+<body>
+<%= render 'layouts/header' %>
+	<div class="container content">
+		<% if notice %>
+		  <div class="alert alert-success">
+		    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		    <strong>Success!</strong> <%= notice %>.
+		  </div>
+		<% end %>
+		<% if alert %>
+			<div class="alert alert-danger">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    <strong>Danger!</strong> <%= alert %>.
+			</div>
+		<% end %>
+		<%= yield %>
+		<br/><br/>
+	</div>
+<%= render 'layouts/footer' %>
+<script type="text/javascript">
+	$(".container table").addClass("table table-striped")
+	$(".container form").addClass("table table-striped")
+	$(document).ready(function(){
+    	$('[data-toggle="popover"]').popover(); 
+	});
+</script>
+</body>
+</html>

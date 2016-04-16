@@ -1,0 +1,25 @@
+<tr id= "question_group_<%= question_group.id %>">
+  <td>
+    <% if can_administer? %>
+      <%= link_to question_group.name, question_group_questions_path(question_group) %>
+    <% else %>
+      <%= question_group.name %>
+    <% end %>
+  </td>
+  <td>
+    <ul class="horizontal-list">
+      <li>
+      <% if can_administer? || check_answer(question_group.id, current_user.id)%>
+        <%= link_to "Answering", new_question_group_answer_group_path(question_group), class: 'btn btn-primary btn-sm' %>
+      <% else %>
+          already answer
+          <a href='/question_groups/<%= question_group.id %>/participants/<%= current_user.id %> ' class='btn btn-info btn-sm'> Results</a>
+      <% end %>
+      </li>
+      <% if can_administer? %>
+        <li><%= link_to "Results", [:results, question_group], class: 'btn btn-info btn-sm'  %></li>
+        <li><%= link_to "Delete", [question_group], method: :delete, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'  %></li>
+      <% end %>
+    </ul>
+  </td>
+</tr>

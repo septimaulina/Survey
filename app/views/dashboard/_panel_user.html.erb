@@ -1,0 +1,55 @@
+<div class="row">
+<!-- User Profile -->
+    <div class="col-lg-4 col-md-4">
+		<div class="panel panel-stat btn-primary">
+			<div class="panel-body">
+				<div class="row mbxl">
+					<div class="col-xs-8">
+						<span><%= current_user.name %></span>
+						<p><strong><%= current_user.nisn %></strong></p>
+					</div>
+					<div class="col-xs-4">
+						<i class="fa fa-user fa-3x"></i>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<span>Class</span>
+						<p><strong><%= current_user.user_group.name %></strong></p>
+					</div>
+					<div class="col-xs-8">
+						<span>Last Login </span>
+						<p><strong><%= time_ago_in_words(current_user.last_sign_in_at) %></strong></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- Scoring -->
+    <div class="col-lg-4 col-md-4">
+		<div class="panel panel-stat btn-info">
+			<div class="panel-body">
+				<div class="row mbxl">
+					<div class="col-xs-6">
+						<span>Score</span>
+						<p><strong><%= score_category(current_user.id)%></strong></p>
+					</div>
+					<div class="col-xs-6">
+						<i class="fa fa-bar-chart fa-3x"></i>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<span>Total Question</span>
+						<p><strong><%= total_questions %></strong></p>
+					</div>
+					<div class="col-xs-6">
+						<span>Category</span>
+						<p><strong><%= get_category_by_score(score_category(current_user.id)) %></strong></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
